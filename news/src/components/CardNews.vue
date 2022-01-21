@@ -9,12 +9,16 @@
       <v-card-title v-text="loh"></v-card-title>
     </v-img>
 
-    <v-card-actions>
-      <v-spacer></v-spacer>
+    <v-card-text>
+      <p>dkfljdfklkhdklgjdflkjgdfkgdffj</p>
+    </v-card-text>
 
-      <v-btn icon>
-        <v-icon>mdi-heart</v-icon>
+    <v-card-actions>
+      <v-btn plain>
+        <v-icon class="mr-1">mdi-link-variant</v-icon>
+        source
       </v-btn>
+      <v-spacer></v-spacer>
 
       <v-btn icon>
         <v-icon>mdi-bookmark</v-icon>
