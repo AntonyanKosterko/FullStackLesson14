@@ -1,60 +1,50 @@
 <template>
   <v-app>
-    <v-app-bar
-      app
-      color="primary"
-      dark
-    >
-      <div class="d-flex align-center">
-        <v-img
-          alt="Vuetify Logo"
-          class="shrink mr-2"
-          contain
-          src="https://cdn.vuetifyjs.com/images/logos/vuetify-logo-dark.png"
-          transition="scale-transition"
-          width="40"
-        />
-
-        <v-img
-          alt="Vuetify Name"
-          class="shrink mt-1 hidden-sm-and-down"
-          contain
-          min-width="100"
-          src="https://cdn.vuetifyjs.com/images/logos/vuetify-name-dark.png"
-          width="100"
-        />
-      </div>
-
-      <v-spacer></v-spacer>
-
-      <v-btn
-        href="https://github.com/vuetifyjs/vuetify/releases/latest"
-        target="_blank"
-        text
-      >
-        <span class="mr-2">Latest Release</span>
-        <v-icon>mdi-open-in-new</v-icon>
-      </v-btn>
-    </v-app-bar>
+    <AppBar v-on:appbar-click="changeNav()"></AppBar>
+    <v-navigation-drawer app v-model="navigation" absolute temporary>
+      <NavDrawer></NavDrawer>
+    </v-navigation-drawer>
 
     <v-main>
-      <HelloWorld/>
+      <v-content app>
+        <v-container
+          class="lighten-5 mb-6"
+        >
+          <v-row no-gutters style="height: 150px">
+            <v-col v-for="n in 3" :key="n">
+              <CardNews></CardNews>
+            </v-col>
+          </v-row>
+        </v-container>
+      </v-content>
     </v-main>
   </v-app>
 </template>
 
 <script>
-import HelloWorld from './components/HelloWorld';
+//import HelloWorld from './components/HelloWorld';
+import AppBar from "./components/AppBar";
+import CardNews from "./components/CardNews";
+import NavDrawer from "./components/NavDrawer";
 
 export default {
-  name: 'App',
+  name: "App",
 
   components: {
-    HelloWorld,
+    AppBar,
+    CardNews,
+    NavDrawer,
   },
 
   data: () => ({
-    //
+    navigation: false,
   }),
+
+  methods: {
+    changeNav() {
+      this.navigation = !this.navigation;
+      console.log(this.navigation);
+    },
+  },
 };
 </script>
