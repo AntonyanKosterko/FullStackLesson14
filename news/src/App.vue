@@ -7,12 +7,13 @@
 
     <v-main>
       <v-content app>
-        <v-container
-          class="lighten-5 mb-6"
-        >
+        <v-container class="lighten-5 mb-6">
           <v-row no-gutters style="height: 150px">
-            <v-col v-for="n in 3" :key="n">
-              <CardNews></CardNews>
+            <v-col v-for="card in ListNews" :key="card">
+              <slot>
+                <CardNews :title="card['title']" :source_url="card['url']" :img_url="card['urlToImage']></CardNews>
+              </slot>
+              
             </v-col>
           </v-row>
         </v-container>
@@ -38,6 +39,7 @@ export default {
 
   data: () => ({
     navigation: false,
+    ListNews: [],
   }),
 
   methods: {
@@ -45,6 +47,18 @@ export default {
       this.navigation = !this.navigation;
       console.log(this.navigation);
     },
+    getListNews() {
+      this.axios.get("https://newsapi.org/v2/top-headlines?country=ru&apiKey=d7f41a32c26b4bbfb596d58b1a54c766").then((response) => {
+        this.ListNews = response['data']['articles'];
+        console.log(this.ListNews);
+        //console.log(response['data']['articles']['0']['title']);
+        //response['data']['articles']['0']['source']['author']
+      });
+    },
   },
+
+  mounted(){
+    this.getListNews();
+  }
 };
 </script>
