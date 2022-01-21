@@ -7,13 +7,14 @@
 
     <v-main>
       <v-content app>
-        <v-container class="lighten-5 mb-6">
+        <v-container class="lighten-5 mb-6" fluid>
           <v-row no-gutters style="height: 150px">
-            <v-col v-for="card in ListNews" :key="card">
-              <slot>
-                <CardNews :title="card['title']" :source_url="card['url']" :img_url="card['urlToImage']></CardNews>
-              </slot>
-              
+            <v-col v-for="(card,index) in ListNews" :key="index" cols=4>
+                <CardNews 
+                  :title="card['title']"
+                  :source_url="card['url']" 
+                  :img_url="card['urlToImage']">
+                </CardNews>
             </v-col>
           </v-row>
         </v-container>
