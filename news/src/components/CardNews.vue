@@ -10,7 +10,7 @@
     </v-img>
 
     <v-card-text>
-      <p>title</p>
+      <p>{{ title }}</p>
     </v-card-text>
 
     <v-card-actions>
